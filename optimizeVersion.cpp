@@ -5,8 +5,9 @@
  * Pour compiler : g++ `pkg-config --cflags opencv` projet_base_imc.cpp `pkg-config --libs opencv` -o projet
  *---------------------------------------------------------------------------------------------------
  * auteur : Eva Dokladalova 09/2015
+ * modificaiton : Pham Quoc Trung 10/2018
  * modification : Sahar Hosseini 10/2018
- * modificaiton : Pham  10/2018
+ * 
  */
 
 
@@ -93,10 +94,6 @@ int yGradient(Mat image, int x, int y)
 
 int main()
 {
-
- 
-
-
 //----------------------------------------------
 // Video acquisition - opening
 //----------------------------------------------
@@ -104,18 +101,6 @@ int main()
 	  if(!cap.isOpened()){
 	    cout << "Errore"; return -1;
 	  }
-	//----------------------------------------------
-	// Déclaration des variables - imagesize
-	// Mat - structure contenant l'image 2D niveau de gris
-	// Mat3b - structure contenant l'image 2D en couleur (trois cannaux)
-	// Some examples of Mat copy :
-	//      Mat F = A.clone();
-	//      Mat G;
-	//      A.copyTo(G);
-	// Some usefum examples :
-	//      int ni = G.cols; // columns number
-	//      int nj = G.rows; // rows number
-	//      int pixel =  A.at<int>(i, j)); // access to one element of a matrix 
 	 int f = 0;
 	 Mat src, dst,gray,median;
 	 int gx, gy, sum;
@@ -168,20 +153,6 @@ int main()
 	     struct timeval start, end;
 	     gettimeofday(&start, NULL);
 	  #endif 
-        // ----------------REPLACE START------------------------------
-	/*for (int y = 0; y < median.rows; y++) //first version of OPT remove extra for 
-	for (int x = 0; x < median.cols; x++)
-		dst.at<uchar>(y, x) = 0.0;*/
-        /*pthread_t primes[10];
-        for (int i = 0; i < 10; ++i) 
-        {   
-            
-            Mat  *args = &median;
-            if(pthread_create(&primes[i], NULL, compute_sobel, args)) {
-            free(args);}
-        }*/
-         
-        
 
 	for (int y = 1; y < width - 1; y=y+2)//second version of OPT remove extra for 
 	{
@@ -263,8 +234,7 @@ int main()
 			dst.at<uchar>(y+1, x+1) = sum;
                   
 
-                        
-		}
+      		}
 
 
 	}
